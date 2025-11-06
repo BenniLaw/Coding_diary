@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Box</title>
+    <style>
+        /* 以后写页面第一句话都是reset margin和padding */
+        /* 盒子到网页边缘的距离 = margin（外边距）
+        它是用来让盒子跟周围所有东西保持距离，包括：与其他盒子之间, 与网页边缘之间, 与父容器边缘之间
+        如果页面没有别的元素，网页边缘就算“其他元素/容器的边” */
+        /* padding 是内容到盒子边框的距离 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: black;
+            height: 50px;
+        }
+        .nav {
+            background-color: blue;
+            height: 20px;  
+            width: 350px;
+        }
+        .main {
+            background-color: green;
+            height: 500px;
+            width: 350px;
+        }
+        .footer {
+            background-color: purple;
+            height: 100px;
+        }
+        .center{
+            margin: 0 auto;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- head -->
+    <div class="header">
+    </div>
+
+    <!-- nav -->
+    <nav class="nav center">
+    </nav>
+
+    <!-- main -->
+    <main class="main center">
+    </main>
+
+    <!-- footer -->
+    <footer class="footer">
+    </footer>
+
+
+</body>
+</html>
