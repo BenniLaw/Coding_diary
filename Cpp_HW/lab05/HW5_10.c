@@ -7,5 +7,6 @@ int main(){
     for(int i = 0; i < length; i++){
         scanf("%d", &nums[i]);
     }
+
     
 }
