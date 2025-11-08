@@ -1,12 +1,13 @@
 # include <stdio.h>
 
-void func(){
-    printf("********************\nHow do you do!\n********************");
+void max(int a, int b){
+    printf("%d", a > b ? a : b);
 }
 
 int main(){
-
-    func();
+    int a = 0, b = 0;
+    scanf("%d %d", &a, &b);
+    max(a, b);
 
     return 0;
 }

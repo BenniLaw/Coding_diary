@@ -1,0 +1,98 @@
+<!-- 背景和前景移动速度不同的视觉效果产生一种深度感 / 空间层次感 -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax scrolling effect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 先设置背景为100%高度 */
+        html, 
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* 再所有section都设置为100%高度 */
+        div[class^="section"] {
+            height: 100%;
+            width: 100%;
+        }
+
+        .section1 {
+            background: url(./assets/bg1.jpg) no-repeat fixed center/cover;
+        }
+        .section2 {
+            background: url(./assets/bg2.jpg) no-repeat fixed center center/cover;
+        }
+        .section3 {
+            background: url(./assets/bg3.jpg) no-repeat fixed center center/cover;
+        }
+        .section4 {
+            background: url(./assets/bg4.jpg) no-repeat fixed center center/cover;
+        }
+
+        div[class^="content"] {
+            height: 25%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-sizing: border-box;
+            color: white;
+            padding: 50px;
+            font-size: 40px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 50px;
+        }
+
+        div[class^="section"] h1 {
+            text-align: center;
+            font-weight: 700;
+            font-size: 130px;
+            margin-top: 300px;
+            letter-spacing: 15px;
+            color:aliceblue
+        }
+    </style>
+ </head>
+ <body>
+    <!-- 准备四个大盒子 -->
+     <div class="section1">
+         <!-- 盒子里分为上下两部分 -->
+         <!-- section 1 -->
+         <div class="content1">
+            <p>In statistics, σ (sigma) represents the true standard deviation of a population. It describes the real spread or variability of all data points in the entire group we care about — for example, the heights of all people in a country. However, in most real-world situations we never have access to every single member of a population. Because of this, σ is typically unknown.</p>
+         </div>
+         <!-- section 2 -->
+         <h1>Sunset</h1>
+     </div>
+     <div class="section2">
+        <div class="content2">
+            <p>Sunset is the moment when the sun disappears below the horizon, casting a long shadow across the sky. It is a beautiful moment of transition from day to night, and it is often associated with the end of a day. Sunset is a time of year when people come together to share the beauty of the world with each other.</p>
+        </div>
+        <!-- section 3 -->
+        <h1>Forest</h1>
+     </div>
+     <div class="section3">
+        <div class="content3">
+            <p>Since we cannot directly observe σ, we rely on s, the sample standard deviation. The value s is calculated from the data we actually collect — such as the heights of 20 randomly chosen people. In essence, s is our best estimate of σ, based only on the limited evidence we have in our sample. The more data we gather, the closer s tends to get to the true σ.</p>
+        </div> 
+        <!-- section 4 -->
+        <h1>Island</h1>
+     </div>
+     <div class="section4">
+        <div class="content4">
+            <p>When the sample size is large, the estimation error between s and σ becomes very small, and the normal (Z) distribution works well for constructing confidence intervals. However, when the sample size is small, using s instead of σ introduces more uncertainty. To account for this extra uncertainty, statisticians use the t-distribution, which has fatter tails and produces slightly wider confidence intervals.</p>
+        </div>    
+        <!-- section 5 -->
+        <h1>Snow</h1>
+     </div>
+
+    
+ </body>
+ </html>

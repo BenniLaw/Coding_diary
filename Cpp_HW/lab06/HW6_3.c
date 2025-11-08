@@ -1,13 +1,19 @@
 # include <stdio.h>
-
-void add(double a, double b){
-    printf("%.2lf", a + b);
+void gcd_lcm(int a, int b){
+    int gcd = 0, lcm = 0;
+    for(int i = 1; i <= a; i++){
+        if(a % i == 0 && b % i == 0){
+            gcd = i;
+        }
+    }
+    lcm = a * b / gcd;
+   
+    printf("%d %d", gcd, lcm);
 }
 
 int main(){
-    double a = 0, b = 0;
-    scanf("%lf %lf", &a, &b);
-    add(a, b);
-
+    int a = 0, b = 0;
+    scanf("%d %d", &a, &b);
+    gcd_lcm(a, b);
     return 0;
 }

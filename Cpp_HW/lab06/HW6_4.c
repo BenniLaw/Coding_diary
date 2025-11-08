@@ -1,19 +1,31 @@
 # include <stdio.h>
-void gcd_lcm(int a, int b){
-    int gcd = 0, lcm = 0;
-    for(int i = 1; i <= a; i++){
-        if(a % i == 0 && b % i == 0){
-            gcd = i;
+int prime(int even){
+    for (int i = 2; i * i <= even; i++){
+        if (even % i == 0){
+            return 0;
         }
     }
-    lcm = a * b / gcd;
-   
-    printf("%d %d", gcd, lcm);
+    return 1;
 }
 
 int main(){
-    int a = 0, b = 0;
-    scanf("%d %d", &a, &b);
-    gcd_lcm(a, b);
-    return 0;
+    int even = 0;
+    scanf("%d", &even);
+
+    if (even % 2 != 0 || even < 6){
+        printf("Input an even num (>=6)");
+        return 0;
+    }
+    else {
+        
+            for (int k = 2; k < even; k++){
+                if (prime(k)){                
+                    if (prime(even - k)){
+                        printf("%d+%d", k, even - k);
+                        return 0;
+                    }        
+                }
+            }
+    }
 }
+
