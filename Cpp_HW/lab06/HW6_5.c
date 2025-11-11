@@ -1,9 +1,9 @@
 # include <stdio.h>
-int get_max(int *nums, length){
-    int max_index = nums;
-    for (int i = 0; i < length; i++){
-        if (*(nums + i) > max){
-            max_index = nums + i;
+int get_max(int *nums, int length){
+    int max_index = 0;
+    for (int i = 1; i < length; i++){
+        if (*(nums + i) > *(nums + max_index)){
+            max_index = i;
         }
     }
     return max_index;
@@ -12,8 +12,8 @@ int get_max(int *nums, length){
 int main(){
     int nums[8] = {0};
     for (int i = 0; i < 8; i++){
-        scanf("%d ", &nums[i]);
+        scanf("%d", &nums[i]);
     }
-    printf("%d", get_max(nums, 8))
+    printf("%d", nums[get_max(nums, 8)]);
 }
 

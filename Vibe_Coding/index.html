@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代网站首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-slider { transition: transform 0.5s ease-in-out; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 固定顶部导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-indigo-600">
+                        <i class="fas fa-rocket mr-2"></i>ModernSite
+                    </a>
+                </div>
+                
+                <!-- 搜索框 -->
+                <div class="hidden md:flex flex-1 max-w-md mx-8">
+                    <div class="relative w-full">
+                        <input type="text" placeholder="搜索内容..." 
+                               class="w-full px-4 py-2 pl-10 pr-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <!-- 导航链接 -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 transition">首页</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 transition">发现</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 transition">分类</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 transition">关于</a>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                        登录
+                    </button>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button class="md:hidden text-gray-700" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <input type="text" placeholder="搜索..." class="w-full px-4 py-2 rounded-lg border border-gray-300">
+                <a href="#" class="block text-gray-700 hover:text-indigo-600">首页</a>
+                <a href="#" class="block text-gray-700 hover:text-indigo-600">发现</a>
+                <a href="#" class="block text-gray-700 hover:text-indigo-600">分类</a>
+                <a href="#" class="block text-gray-700 hover:text-indigo-600">关于</a>
+                <button class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg">登录</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <div class="pt-16">
+        <!-- Hero 轮播区 -->
+        <div class="relative bg-gradient-to-r from-indigo-600 to-purple-600 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div id="heroSlider" class="relative">
+                    <!-- Slide 1 -->
+                    <div class="hero-slide flex flex-col md:flex-row items-center justify-between">
+                        <div class="text-white md:w-1/2 mb-8 md:mb-0">
+                            <h1 class="text-4xl md:text-5xl font-bold mb-4">探索精彩内容</h1>
+                            <p class="text-xl mb-6 text-indigo-100">发现全球最优质的创意作品和灵感</p>
+                            <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                                立即开始 <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop" 
+                                 alt="Hero" class="rounded-lg shadow-2xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播指示器 -->
+            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition"></button>
+                <button class="w-3 h-3 rounded-full bg-white opacity-100"></button>
+                <button class="w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition"></button>
+            </div>
+        </div>
+
+        <!-- 分类标签栏 -->
+        <div class="bg-white border-b sticky top-16 z-40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex space-x-8 overflow-x-auto py-4">
+                    <button onclick="filterContent('all')" class="filter-btn whitespace-nowrap text-indigo-600 font-semibold border-b-2 border-indigo-600 pb-2">
+                        全部
+                    </button>
+                    <button onclick="filterContent('tech')" class="filter-btn whitespace-nowrap text-gray-600 hover:text-indigo-600 pb-2">
+                        科技
+                    </button>
+                    <button onclick="filterContent('design')" class="filter-btn whitespace-nowrap text-gray-600 hover:text-indigo-600 pb-2">
+                        设计
+                    </button>
+                    <button onclick="filterContent('photo')" class="filter-btn whitespace-nowrap text-gray-600 hover:text-indigo-600 pb-2">
+                        摄影
+                    </button>
+                    <button onclick="filterContent('art')" class="filter-btn whitespace-nowrap text-gray-600 hover:text-indigo-600 pb-2">
+                        艺术
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主内容区域 -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- 主内容 -->
+                <main class="flex-1">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">热门推荐</h2>
+                    
+                    <!-- 卡片网格 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="contentGrid">
+                        <!-- 卡片 1 -->
+                        <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" data-category="tech">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=250&fit=crop" 
+                                 alt="编程" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-indigo-100 text-indigo-600 text-xs font-semibold px-2.5 py-0.5 rounded">科技</span>
+                                    <span class="ml-auto text-gray-500 text-sm">2小时前</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">现代Web开发完全指南</h3>
+                                <p class="text-gray-600 text-sm mb-4">深入探讨最新的前端开发技术和最佳实践</p>
+                                <div class="flex items-center justify-between text-sm text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <span><i class="far fa-heart"></i> 1.2k</span>
+                                        <span><i class="far fa-comment"></i> 89</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop" 
+                                             class="w-6 h-6 rounded-full mr-2" alt="作者">
+                                        <span>张伟</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 卡片 2 -->
+                        <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" data-category="design">
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=250&fit=crop" 
+                                 alt="设计" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-pink-100 text-pink-600 text-xs font-semibold px-2.5 py-0.5 rounded">设计</span>
+                                    <span class="ml-auto text-gray-500 text-sm">5小时前</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">UI设计趋势2024</h3>
+                                <p class="text-gray-600 text-sm mb-4">探索今年最流行的用户界面设计风格</p>
+                                <div class="flex items-center justify-between text-sm text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <span><i class="far fa-heart"></i> 856</span>
+                                        <span><i class="far fa-comment"></i> 42</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop" 
+                                             class="w-6 h-6 rounded-full mr-2" alt="作者">
+                                        <span>李娜</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 卡片 3 -->
+                        <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" data-category="photo">
+                            <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=400&h=250&fit=crop" 
+                                 alt="摄影" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-green-100 text-green-600 text-xs font-semibold px-2.5 py-0.5 rounded">摄影</span>
+                                    <span class="ml-auto text-gray-500 text-sm">1天前</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">风光摄影技巧分享</h3>
+                                <p class="text-gray-600 text-sm mb-4">如何捕捉大自然最美的瞬间</p>
+                                <div class="flex items-center justify-between text-sm text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <span><i class="far fa-heart"></i> 2.3k</span>
+                                        <span><i class="far fa-comment"></i> 156</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=32&h=32&fit=crop" 
+                                             class="w-6 h-6 rounded-full mr-2" alt="作者">
+                                        <span>王强</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 卡片 4 -->
+                        <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" data-category="art">
+                            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=250&fit=crop" 
+                                 alt="艺术" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-purple-100 text-purple-600 text-xs font-semibold px-2.5 py-0.5 rounded">艺术</span>
+                                    <span class="ml-auto text-gray-500 text-sm">2天前</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">当代艺术展览回顾</h3>
+                                <p class="text-gray-600 text-sm mb-4">探索现代艺术的多元表达形式</p>
+                                <div class="flex items-center justify-between text-sm text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <span><i class="far fa-heart"></i> 645</span>
+                                        <span><i class="far fa-comment"></i> 38</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=32&h=32&fit=crop" 
+                                             class="w-6 h-6 rounded-full mr-2" alt="作者">
+                                        <span>刘芳</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 卡片 5 -->
+                        <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" data-category="tech">
+                            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop" 
+                                 alt="科技" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-indigo-100 text-indigo-600 text-xs font-semibold px-2.5 py-0.5 rounded">科技</span>
+                                    <span class="ml-auto text-gray-500 text-sm">3天前</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">人工智能的未来展望</h3>
+                                <p class="text-gray-600 text-sm mb-4">AI技术如何改变我们的生活方式</p>
+                                <div class="flex items-center justify-between text-sm text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <span><i class="far fa-heart"></i> 3.1k</span>
+                                        <span><i class="far fa-comment"></i> 234</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop" 
+                                             class="w-6 h-6 rounded-full mr-2" alt="作者">
+                                        <span>陈明</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 卡片 6 -->
+                        <div class="card-hover bg-white rounded-xl shadow-md overflow-hidden cursor-pointer" data-category="design">
+                            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=250&fit=crop" 
+                                 alt="设计" class="w-full h-48 object-cover">
+                            <div class="p-5">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-pink-100 text-pink-600 text-xs font-semibold px-2.5 py-0.5 rounded">设计</span>
+                                    <span class="ml-auto text-gray-500 text-sm">4天前</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-2">极简主义设计理念</h3>
+                                <p class="text-gray-600 text-sm mb-4">少即是多的设计哲学实践</p>
+                                <div class="flex items-center justify-between text-sm text-gray-500">
+                                    <div class="flex items-center space-x-4">
+                                        <span><i class="far fa-heart"></i> 1.8k</span>
+                                        <span><i class="far fa-comment"></i> 92</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=32&h=32&fit=crop" 
+                                             class="w-6 h-6 rounded-full mr-2" alt="作者">
+                                        <span>赵敏</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 加载更多按钮 -->
+                    <div class="text-center mt-8">
+                        <button class="bg-white text-gray-700 px-8 py-3 rounded-lg border border-gray-300 hover:bg-gray-50 transition">
+                            加载更多 <i class="fas fa-chevron-down ml-2"></i>
+                        </button>
+                    </div>
+                </main>
+
+                <!-- 侧边栏 -->
+                <aside class="lg:w-80">
+                    <!-- 热门话题 -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">热门话题</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-indigo-600 font-bold mr-3">#1</span>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900">Web3.0技术革新</h4>
+                                    <p class="text-sm text-gray-500">12.5k 讨论</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-indigo-600 font-bold mr-3">#2</span>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900">设计系统构建</h4>
+                                    <p class="text-sm text-gray-500">8.3k 讨论</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-indigo-600 font-bold mr-3">#3</span>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900">摄影后期处理</h4>
+                                    <p class="text-sm text-gray-500">6.7k 讨论</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-indigo-600 font-bold mr-3">#4</span>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-900">数字艺术创作</h4>
+                                    <p class="text-sm text-gray-500">5.2k 讨论</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 推荐创作者 -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">推荐创作者</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=48&h=48&fit=crop" 
+                                         class="w-12 h-12 rounded-full mr-3" alt="创作者">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">张晓明</h4>
+                                        <p class="text-sm text-gray-500">前端开发</p>
+                                    </div>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-1 rounded-lg text-sm hover:bg-indigo-700 transition">
+                                    关注
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=48&h=48&fit=crop" 
+                                         class="w-12 h-12 rounded-full mr-3" alt="创作者">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">李雪</h4>
+                                        <p class="text-sm text-gray-500">UI设计师</p>
+                                    </div>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-1 rounded-lg text-sm hover:bg-indigo-700 transition">
+                                    关注
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=48&h=48&fit=crop" 
+                                         class="w-12 h-12 rounded-full mr-3" alt="创作者">
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900">王浩</h4>
+                                        <p class="text-sm text-gray-500">摄影师</p>
+                                    </div>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-1 rounded-lg text-sm hover:bg-indigo-700 transition">
+                                    关注
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 广告位 -->
+                    <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-md p-6 text-white">
+                        <h3 class="text-xl font-bold mb-2">成为会员</h3>
+                        <p class="text-indigo-100 mb-4">解锁更多专属功能和内容</p>
+                        <button class="bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition w-full">
+                            立即升级
+                        </button>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-gray-300 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white text-lg font-bold mb-4">
+                        <i class="fas fa-rocket mr-2"></i>ModernSite
+                    </h3>
+                    <p class="text-sm">探索创意，分享灵感，连接世界各地的创作者。</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">产品</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">功能特性</a></li>
+                        <li><a href="#" class="hover:text-white transition">定价方案</a></li>
+                        <li><a href="#" class="hover:text-white transition">企业版</a></li>
+                        <li><a href="#" class="hover:text-white transition">更新日志</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">资源</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">帮助中心</a></li>
+                        <li><a href="#" class="hover:text-white transition">开发文档</a></li>
+                        <li><a href="#" class="hover:text-white transition">社区论坛</a></li>
+                        <li><a href="#" class="hover:text-white transition">博客</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">关注我们</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-white transition"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
+                <p>&copy; 2024 ModernSite. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 内容筛选功能
+        function filterContent(category) {
+            const cards = document.querySelectorAll('[data-category]');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // 更新按钮样式
+            buttons.forEach(btn => {
+                btn.classList.remove('text-indigo-600', 'font-semibold', 'border-b-2', 'border-indigo-600');
+                btn.classList.add('text-gray-600');
+            });
+            event.target.classList.remove('text-gray-600');
+            event.target.classList.add('text-indigo-600', 'font-semibold', 'border-b-2', 'border-indigo-600');
+            
+            // 筛选卡片
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
