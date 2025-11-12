@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百度图片示例</title>
+</head>
+<style>
+  .col-flex {
+    display: flex;
+    width: 1180px;
+    margin: 20px auto;
+    /* border: 1px solid red; */
+    gap: 16px;  /* 图片之间间距 */
+  }
+  .col-flex .item {
+    flex: 1;
+
+  }
+  .col-flex .item a {
+    display: block; /* 图片包裹在链接中，点击图片也会跳转 */
+    width: 100%;  /* 链接宽度占满父元素 */
+    border-radius: 18px; /* 链接圆角, 还得切一下图片 */
+    overflow: hidden;  /* 图片超出部分隐藏 */
+    margin-bottom: 15px;  /* 图片之间间距 */
+    
+  }
+  .col-flex .item a img {
+    width: 100%; /* 图片宽度占满父元素 */
+  }
+
+</style>
+<body>
+  <div class="col-flex">
+    <div class="item">
+      <a href="#"><img src="./img/c1.webp" alt=""></a>
+      <a href="#"><img src="./img/c2.webp" alt=""></a>
+      <a href="#"><img src="./img/c3.webp" alt=""></a>
+      <a href="#"><img src="./img/c4.webp" alt=""></a>
+      <a href="#"><img src="./img/c5.webp" alt=""></a>
+      <a href="#"><img src="./img/c6.webp" alt=""></a>
+      <a href="#"><img src="./img/c7.webp" alt=""></a>
+      <a href="#"><img src="./img/c8.webp" alt=""></a>
+      <a href="#"><img src="./img/c9.webp" alt=""></a>
+      <a href="#"><img src="./img/c10.webp" alt=""></a>
+    </div>
+    <div class="item">
+      <a href="#"><img src="./img/c2-1.webp" alt=""></a>
+      <a href="#"><img src="./img/c2-2.webp" alt=""></a>
+      <a href="#"><img src="./img/c2-3.webp" alt=""></a>
+      <a href="#"><img src="./img/c2-4.webp" alt=""></a>
+      <a href="#"><img src="./img/c2-5.webp" alt=""></a>
+      <a href="#"><img src="./img/c2-6.webp" alt=""></a>
+      <a href="#"><img src="./img/c2-7.webp" alt=""></a>
+      <a href="#"><img src="./img/c2-8.webp" alt=""></a>
+    </div>
+    <div class="item">
+      <a href="#"><img src="./img/c3-1.webp" alt=""></a>
+      <a href="#"><img src="./img/c3-2.webp" alt=""></a>
+      <a href="#"><img src="./img/c3-3.webp" alt=""></a>
+      <a href="#"><img src="./img/c3-4.webp" alt=""></a>
+      <a href="#"><img src="./img/c3-5.webp" alt=""></a>
+    </div>
+    <div class="item">
+      <a href="#"><img src="./img/c4-1.webp" alt=""></a>
+      <a href="#"><img src="./img/c4-2.webp" alt=""></a>
+      <a href="#"><img src="./img/c4-3.webp" alt=""></a>
+      <a href="#"><img src="./img/c4-4.webp" alt=""></a>
+      <a href="#"><img src="./img/c4-5.webp" alt=""></a>
+      <a href="#"><img src="./img/c4-6.webp" alt=""></a>
+      <a href="#"><img src="./img/c4-7.webp" alt=""></a>
+    </div>
+    <div class="item">
+      <a href="#"><img src="./img/c5-1.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-2.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-3.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-4.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-5.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-6.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-7.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-8.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-9.webp" alt=""></a>
+      <a href="#"><img src="./img/c5-10.webp" alt=""></a>
+    </div>
+  </div>
+</body>
+</html>
+
+图片下面默认有一个空白的缝隙
+原因：
+a标签是行内元素，默认会有一个空白的缝隙
